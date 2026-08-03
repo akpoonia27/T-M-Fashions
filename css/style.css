@@ -512,7 +512,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .product-detail { display: grid; grid-template-columns: 1.1fr 1fr; gap: var(--space-6); align-items: start; }
 @media (max-width: 900px) { .product-detail { grid-template-columns: 1fr; gap: var(--space-4); } }
 
-.gallery { position: sticky; top: 96px; }
+.gallery { position: sticky; top: 96px; z-index: 1; }
+@media (max-width: 900px) { .gallery { position: static; z-index: auto; } }
 .gallery__main {
   position: relative; aspect-ratio: 3/4; border-radius: var(--radius-lg); overflow: hidden;
   background: var(--beige-100); box-shadow: var(--shadow);
