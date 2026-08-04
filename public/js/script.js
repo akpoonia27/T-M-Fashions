@@ -422,11 +422,29 @@ function initContact() {
   if (!form) return;
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const msg = $("#formMsg");
-    msg.classList.add("show", "success");
-    msg.textContent = "Thank you — your message has been noted. Our studio will reply within 24 hours.";
+    const fname = $("#fname").value.trim();
+    const lname = $("#lname").value.trim();
+    const email = $("#email").value.trim();
+    const phone = $("#phone").value.trim();
+    const interest = $("#interest").value;
+    const message = $("#message").value.trim();
+    const msg =
+`Hello ${BRAND.shortName}! I'd like to book an appointment.
+
+Name: ${fname} ${lname}
+Email: ${email}
+Phone: ${phone}
+Interested in: ${interest}
+${message ? `Message: ${message}` : ""}
+
+Thank you!`;
+    const url = `https://wa.me/${BRAND.whatsapp}?text=${encodeURIComponent(msg)}`;
+    const m = $("#formMsg");
+    m.classList.add("show", "success");
+    m.textContent = "Opening WhatsApp with your details…";
+    window.open(url, "_blank");
     form.reset();
-    setTimeout(() => msg.classList.remove("show", "success"), 6000);
+    setTimeout(() => m.classList.remove("show", "success"), 6000);
   });
 }
 
