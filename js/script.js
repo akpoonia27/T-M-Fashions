@@ -222,6 +222,7 @@ function initDesigns() {
     if (!chip) return;
     activeCat = chip.dataset.cat;
     renderChips(); render();
+    grid.scrollIntoView({ behavior: "smooth", block: "start" });
   });
   search.addEventListener("input", (e) => { query = e.target.value; render(); });
 }

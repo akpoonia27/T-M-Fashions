@@ -102,7 +102,7 @@ const DELIVERY_CHARGE = 150;
 /* ----------------------------------------------------------------------------
    THE PRODUCT CATALOGUE  ←  add / edit dresses below
    ---------------------------------------------------------------------------- */
-const PRODUCTS = [
+const _HARDCODED_PRODUCTS = [
   {
     id: 1,
     name: "Rosalind Anarkali",
@@ -429,17 +429,29 @@ const PRODUCTS = [
 ];
 
 /* ----------------------------------------------------------------------------
+   LOAD PRODUCTS — read from localStorage first (admin-edited data),
+   fall back to the hardcoded catalogue above.
+   ---------------------------------------------------------------------------- */
+let PRODUCTS;
+try {
+  const stored = JSON.parse(localStorage.getItem("tmf_products"));
+  PRODUCTS = (Array.isArray(stored) && stored.length) ? stored : _HARDCODED_PRODUCTS;
+} catch (e) {
+  PRODUCTS = _HARDCODED_PRODUCTS;
+}
+
+/* ----------------------------------------------------------------------------
    HELPER: compute the "starting price" shown on cards
    (material total + default stitching + delivery)
    ---------------------------------------------------------------------------- */
 function materialTotal(p) {
-  return p.materialCost.fabric.price +
-         p.materialCost.lining.price +
-         p.materialCost.lace.price +
-         p.materialCost.accessories.price;
+  return (p.materialCost?.fabric?.price || 0) +
+         (p.materialCost?.lining?.price || 0) +
+         (p.materialCost?.lace?.price || 0) +
+         (p.materialCost?.accessories?.price || 0);
 }
 function startingPrice(p) {
-  return materialTotal(p) + p.stitchingPrice + p.deliveryCharge;
+  return materialTotal(p) + (p.stitchingPrice || 0) + (p.deliveryCharge || DELIVERY_CHARGE);
 }
 
 /* ----------------------------------------------------------------------------

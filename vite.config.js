@@ -9,6 +9,8 @@ export default defineConfig({
         designs: resolve(__dirname, "designs.html"),
         product: resolve(__dirname, "product.html"),
         contact: resolve(__dirname, "contact.html"),
+        admin: resolve(__dirname, "admin.html"),
+        dashboard: resolve(__dirname, "dashboard.html"),
       },
     },
   },
