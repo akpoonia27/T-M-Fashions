@@ -45,11 +45,6 @@
                          correct here so the cards show the right starting price)
    ============================================================================ */
 
-import { db } from "./firebase.js";
-import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-
-const PRODUCTS_COLLECTION = "products";
-
 
 /* ----------------------------------------------------------------------------
    SHARED CUSTOMISATION OPTIONS
@@ -434,51 +429,15 @@ const _HARDCODED_PRODUCTS = [
 ];
 
 /* ----------------------------------------------------------------------------
-   LOAD PRODUCTS — read from Firestore first, fall back to hardcoded catalogue.
+   LOAD PRODUCTS — read from localStorage first (admin-edited data),
+   fall back to the hardcoded catalogue above.
    ---------------------------------------------------------------------------- */
-let PRODUCTS = _HARDCODED_PRODUCTS;
-
-export function getFallbackProducts() {
-  return _HARDCODED_PRODUCTS.map(p => ({ ...p }));
-}
-
-export async function fetchProductsFromFirestore() {
-  const snap = await getDocs(collection(db, PRODUCTS_COLLECTION));
-  if (snap.empty) return null;
-  return snap.docs.map(d => ({ firestoreId: d.id, ...d.data() }));
-}
-
-function buildCategories(list) {
-  return ["All", ...Array.from(new Set(list.map(p => p.category)))];
-}
-
-let CATEGORIES = buildCategories(PRODUCTS);
-
-function syncGlobals() {
-  if (typeof window !== "undefined") {
-    window.PRODUCTS = PRODUCTS;
-    window.CATEGORIES = CATEGORIES;
-    window.CUSTOMIZATION_OPTIONS = CUSTOMIZATION_OPTIONS;
-    window.STITCHING_TIERS = STITCHING_TIERS;
-    window.DELIVERY_CHARGE = DELIVERY_CHARGE;
-    window.materialTotal = materialTotal;
-    window.startingPrice = startingPrice;
-    window.getProductById = getProductById;
-  }
-}
-
-async function initProducts() {
-  try {
-    const fromFirestore = await fetchProductsFromFirestore();
-    if (fromFirestore && fromFirestore.length) {
-      PRODUCTS = fromFirestore;
-      CATEGORIES = buildCategories(PRODUCTS);
-    }
-  } catch (e) {
-    console.error("Failed to load products from Firestore:", e);
-  }
-  syncGlobals();
-  window.dispatchEvent(new CustomEvent("tmf:products-ready"));
+let PRODUCTS;
+try {
+  const stored = JSON.parse(localStorage.getItem("tmf_products"));
+  PRODUCTS = (Array.isArray(stored) && stored.length) ? stored : _HARDCODED_PRODUCTS;
+} catch (e) {
+  PRODUCTS = _HARDCODED_PRODUCTS;
 }
 
 /* ----------------------------------------------------------------------------
@@ -502,7 +461,19 @@ function getProductById(id) {
   return PRODUCTS.find(p => p.id === Number(id));
 }
 
-syncGlobals();
+/* ----------------------------------------------------------------------------
+   HELPER: unique category list (used by the filter on the Designs page)
+   ---------------------------------------------------------------------------- */
+const CATEGORIES = ["All", ...Array.from(new Set(PRODUCTS.map(p => p.category)))];
+
+/* expose to other scripts */
 if (typeof window !== "undefined") {
-  window.productsReady = initProducts();
+  window.PRODUCTS = PRODUCTS;
+  window.CUSTOMIZATION_OPTIONS = CUSTOMIZATION_OPTIONS;
+  window.STITCHING_TIERS = STITCHING_TIERS;
+  window.DELIVERY_CHARGE = DELIVERY_CHARGE;
+  window.CATEGORIES = CATEGORIES;
+  window.materialTotal = materialTotal;
+  window.startingPrice = startingPrice;
+  window.getProductById = getProductById;
 }
