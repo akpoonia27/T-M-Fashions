@@ -211,12 +211,13 @@
     <div class="lightbox__counter" id="lbCounter"></div>
   </div>
 
-  <script src="js/products.js?v=20260805"></script>
+  <script type="module" src="js/products.js?v=20260805"></script>
   <script src="js/script.js?v=20260805"></script>
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
     // Update breadcrumb name once product loads
-    window.addEventListener("load", () => {
+    window.addEventListener("load", async () => {
+      if (window.productsReady) await window.productsReady;
       const params = new URLSearchParams(location.search);
       const p = getProductById(params.get("id") || PRODUCTS[0].id);
       if (p) document.getElementById("crumbName").textContent = p.name;
