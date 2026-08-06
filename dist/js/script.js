@@ -175,20 +175,11 @@ function productCardHTML(p) {
    ---------------------------------------------------------------------------- */
 function initHome() {
   const featured = $("#featuredGrid");
-  if (!featured) return;
-
-  const render = () => {
+  if (featured) {
     const picks = PRODUCTS.slice(0, 6);
     featured.innerHTML = picks.map(productCardHTML).join("");
     initReveal();
-  };
-  render();
-
-  window.addEventListener("storage", (e) => {
-    if (e.key !== "tmf_products") return;
-    if (typeof reloadProductsFromStorage === "function") reloadProductsFromStorage();
-    render();
-  });
+  }
 }
 
 /* ----------------------------------------------------------------------------
@@ -231,17 +222,8 @@ function initDesigns() {
     if (!chip) return;
     activeCat = chip.dataset.cat;
     renderChips(); render();
-    grid.scrollIntoView({ behavior: "smooth", block: "start" });
   });
   search.addEventListener("input", (e) => { query = e.target.value; render(); });
-
-  window.addEventListener("storage", (e) => {
-    if (e.key !== "tmf_products") return;
-    if (typeof reloadProductsFromStorage === "function") reloadProductsFromStorage();
-    if (!CATEGORIES.includes(activeCat)) activeCat = "All";
-    renderChips();
-    render();
-  });
 }
 
 /* ----------------------------------------------------------------------------

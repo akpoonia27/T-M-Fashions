@@ -102,7 +102,7 @@ const DELIVERY_CHARGE = 150;
 /* ----------------------------------------------------------------------------
    THE PRODUCT CATALOGUE  ←  add / edit dresses below
    ---------------------------------------------------------------------------- */
-const _HARDCODED_PRODUCTS = [
+const PRODUCTS = [
   {
     id: 1,
     name: "Rosalind Anarkali",
@@ -429,29 +429,17 @@ const _HARDCODED_PRODUCTS = [
 ];
 
 /* ----------------------------------------------------------------------------
-   LOAD PRODUCTS — read from localStorage first (admin-edited data),
-   fall back to the hardcoded catalogue above.
-   ---------------------------------------------------------------------------- */
-let PRODUCTS;
-try {
-  const stored = JSON.parse(localStorage.getItem("tmf_products"));
-  PRODUCTS = (Array.isArray(stored) && stored.length) ? stored : _HARDCODED_PRODUCTS;
-} catch (e) {
-  PRODUCTS = _HARDCODED_PRODUCTS;
-}
-
-/* ----------------------------------------------------------------------------
    HELPER: compute the "starting price" shown on cards
    (material total + default stitching + delivery)
    ---------------------------------------------------------------------------- */
 function materialTotal(p) {
-  return (p.materialCost?.fabric?.price || 0) +
-         (p.materialCost?.lining?.price || 0) +
-         (p.materialCost?.lace?.price || 0) +
-         (p.materialCost?.accessories?.price || 0);
+  return p.materialCost.fabric.price +
+         p.materialCost.lining.price +
+         p.materialCost.lace.price +
+         p.materialCost.accessories.price;
 }
 function startingPrice(p) {
-  return materialTotal(p) + (p.stitchingPrice || 0) + (p.deliveryCharge || DELIVERY_CHARGE);
+  return materialTotal(p) + p.stitchingPrice + p.deliveryCharge;
 }
 
 /* ----------------------------------------------------------------------------
@@ -464,28 +452,7 @@ function getProductById(id) {
 /* ----------------------------------------------------------------------------
    HELPER: unique category list (used by the filter on the Designs page)
    ---------------------------------------------------------------------------- */
-function buildCategories(list) {
-  return ["All", ...Array.from(new Set(list.map(p => p.category)))];
-}
-let CATEGORIES = buildCategories(PRODUCTS);
-
-/* ----------------------------------------------------------------------------
-   RELOAD — re-read localStorage (called when admin updates another tab)
-   ---------------------------------------------------------------------------- */
-function reloadProductsFromStorage() {
-  try {
-    const stored = JSON.parse(localStorage.getItem("tmf_products"));
-    PRODUCTS = (Array.isArray(stored) && stored.length) ? stored : _HARDCODED_PRODUCTS;
-  } catch (e) {
-    PRODUCTS = _HARDCODED_PRODUCTS;
-  }
-  CATEGORIES = buildCategories(PRODUCTS);
-  if (typeof window !== "undefined") {
-    window.PRODUCTS = PRODUCTS;
-    window.CATEGORIES = CATEGORIES;
-  }
-  return PRODUCTS;
-}
+const CATEGORIES = ["All", ...Array.from(new Set(PRODUCTS.map(p => p.category)))];
 
 /* expose to other scripts */
 if (typeof window !== "undefined") {
@@ -497,5 +464,4 @@ if (typeof window !== "undefined") {
   window.materialTotal = materialTotal;
   window.startingPrice = startingPrice;
   window.getProductById = getProductById;
-  window.reloadProductsFromStorage = reloadProductsFromStorage;
 }
