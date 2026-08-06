@@ -452,7 +452,8 @@ Thank you!`;
 /* ----------------------------------------------------------------------------
    12. BOOT
    ---------------------------------------------------------------------------- */
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  if (window.productsReady) await window.productsReady;
   initHeader();
   initLightbox();
   initHome();
