@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design Detail — TM Fashions</title>
+  <meta name="description" content="View design details, material breakdown, stitching options, customisation and live price calculation. Order your chosen design on WhatsApp." />
+  <link rel="canonical" href="https://tmfashions.github.io/product.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=20260805" />
+</head>
+<body>
+
+  <div class="loader" id="loader">
+    <div class="loader__mark">TM FASHIONS</div>
+    <div class="loader__bar"></div>
+  </div>
+
+  <header class="site-header is-scrolled" id="header">
+    <nav class="nav">
+      <a class="brand" href="index.html" style="color: var(--ink-800);">TM<span class="brand-mark">F</span>ashions<small>BOUTIQUE</small></a>
+      <div class="nav-links">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="designs.html">Designs</a>
+        <a class="nav-link" href="designs.html?cat=Bridal Wear">Bridal</a>
+        <a class="nav-link" href="contact.html">Contact</a>
+      </div>
+      <div class="nav-cta">
+        <a class="btn btn--gold btn--sm" href="contact.html">Book an Appointment</a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+      </div>
+    </nav>
+  </header>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="designs.html">Designs</a>
+    <a href="designs.html?cat=Bridal Wear">Bridal</a>
+    <a href="contact.html">Contact</a>
+    <a class="btn btn--gold mobile-cta" href="contact.html">Book an Appointment</a>
+  </div>
+
+  <!-- BREADCRUMB STRIP -->
+  <div style="padding-top: var(--header-h); background: var(--cream);">
+    <div class="container" style="padding-top: var(--space-3); padding-bottom: var(--space-2);">
+      <div class="breadcrumb" style="color: var(--ink-400);">
+        <a href="index.html" style="color: var(--ink-500);">Home</a><span>/</span>
+        <a href="designs.html" style="color: var(--ink-500);">Designs</a><span>/</span>
+        <span id="crumbName" style="color: var(--gold-500);">Design</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT DETAIL -->
+  <section class="section--tight section--cream" id="productRoot">
+    <div class="container">
+      <div class="product-detail">
+
+        <!-- GALLERY -->
+        <div class="gallery">
+          <div class="gallery__main">
+            <img id="galleryMainImg" src="" alt="Main view" />
+            <span class="zoom-hint">Click to zoom</span>
+          </div>
+          <div class="gallery__thumbs" id="galleryThumbs"></div>
+        </div>
+
+        <!-- INFO -->
+        <div class="info-block">
+          <span class="eyebrow" id="pEyebrow">Category</span>
+          <h1 id="pName">Design Name</h1>
+          <div class="code" id="pCode">Code · Occasion</div>
+          <p class="desc" id="pDesc">Description.</p>
+
+          <!-- Specs -->
+          <dl class="spec-grid">
+            <div class="spec"><dt>Category</dt><dd id="specCategory">—</dd></div>
+            <div class="spec"><dt>Fabric</dt><dd id="specFabric">—</dd></div>
+            <div class="spec"><dt>Colour</dt><dd id="specColour">—</dd></div>
+            <div class="spec"><dt>Occasion</dt><dd id="specOccasion">—</dd></div>
+            <div class="spec" style="grid-column: 1 / -1;"><dt>Available Sizes</dt><dd id="specSizes">—</dd></div>
+          </dl>
+
+          <!-- Material table -->
+          <h3 style="margin-bottom: var(--space-2);">Material Details</h3>
+          <table class="material-table" id="matTable"></table>
+
+          <!-- Stitching tiers -->
+          <h3 style="margin-bottom: var(--space-2);">Stitching Options</h3>
+          <div class="tiers" id="stitchingTiers"></div>
+
+          <!-- Customization -->
+          <div class="custom-panel">
+            <h3>Customise Your Design</h3>
+            <div class="custom-group">
+              <label>Fabric Type</label>
+              <div class="custom-options" id="optFabric"></div>
+            </div>
+            <div class="custom-group">
+              <label>Colour</label>
+              <div class="custom-options" id="optColour"></div>
+            </div>
+            <div class="custom-group">
+              <label>Sleeve Style</label>
+              <div class="custom-options" id="optSleeve"></div>
+            </div>
+            <div class="custom-group">
+              <label>Neck Design</label>
+              <div class="custom-options" id="optNeck"></div>
+            </div>
+            <div class="custom-group">
+              <label>Size</label>
+              <div class="size-row" id="optSize"></div>
+            </div>
+            <div class="custom-group" style="margin-bottom: 0;">
+              <label>Embroidery <span class="muted" style="text-transform:none; letter-spacing:0; font-size:.7rem;">(select any combination)</span></label>
+              <div class="custom-options" id="optEmbroidery"></div>
+            </div>
+          </div>
+
+          <!-- Price summary -->
+          <div class="price-summary">
+            <div class="price-summary__row"><span>Material Cost</span><span id="sumMaterial">—</span></div>
+            <div class="price-summary__row"><span>Stitching Cost</span><span id="sumStitching">—</span></div>
+            <div class="price-summary__row"><span>Embroidery</span><span id="sumEmbroidery">—</span></div>
+            <div class="price-summary__row"><span>Delivery (Pan India)</span><span id="sumDelivery">₹150</span></div>
+            <div class="price-summary__row price-summary__row--total"><span>Total Price</span><span id="sumTotal">—</span></div>
+            <div class="muted" style="font-size:.78rem; margin-top:.5rem;" id="startingNote">Starting from —</div>
+          </div>
+
+          <!-- Order -->
+          <button class="btn btn--whatsapp btn--block" id="orderBtn">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm5.8 14.2c-.24.68-1.4 1.3-1.93 1.38-.5.08-1.13.11-1.83-.12-.42-.13-.96-.31-1.66-.61-2.9-1.25-4.8-4.17-4.95-4.36-.14-.19-1.18-1.57-1.18-3 0-1.43.75-2.13 1.02-2.42.27-.29.58-.36.78-.36.19 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.83 2.01.9 2.16.07.14.12.31.02.5-.1.19-.15.31-.29.48-.14.17-.3.38-.43.51-.14.14-.29.29-.12.57.17.29.75 1.24 1.62 2.01 1.12.99 2.06 1.3 2.34 1.45.29.14.45.12.62-.07.17-.19.72-.84.91-1.13.19-.29.38-.24.64-.14.26.1 1.67.79 1.96.93.29.14.48.22.55.34.07.12.07.7-.17 1.38z"/></svg>
+            Order This Design on WhatsApp
+          </button>
+          <p class="muted text-center" style="font-size:.78rem; margin-top: var(--space-2);">Your selections are automatically added to the WhatsApp message. No payment online — we confirm details with you personally.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED -->
+  <section class="section--tight section--beige">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">You May Also Love</span>
+        <h2>More From This Collection</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="product-grid" id="relatedGrid"></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html" style="color: var(--white);">TM<span class="brand-mark">F</span>ashions<small style="color: var(--gold-300);">BOUTIQUE</small></a>
+          <p>Couture for the modern muse. Handcrafted Indian designer wear, made to order and delivered across India.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="designs.html">All Designs</a></li>
+            <li><a href="designs.html?cat=Bridal Wear">Bridal Wear</a></li>
+            <li><a href="designs.html?cat=Party Wear">Party Wear</a></li>
+            <li><a href="contact.html">Contact Designer</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+918569903818">+91 85699 03818</a></li>
+            <li><a href="https://wa.me/918569903818" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="https://www.instagram.com/mrs.chabarwal?igsh=MTlzNmoxcnR0ZjMxcg==" target="_blank" rel="noopener">Instagram</a></li>
+            <li>Bahadurgarh, Haryana</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Delivery</h4>
+          <div class="footer-delivery">
+            <strong>Pan India Delivery</strong><br />
+            Flat ₹150 delivery charge<br />
+            Secure packaging included
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> TM Fashions. All rights reserved. · Crafted in Bahadurgarh, India.</span>
+        <div class="social-row">
+          <a href="https://www.instagram.com/mrs.chabarwal?igsh=MTlzNmoxcnR0ZjMxcg==" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://youtube.com/@talented-madhu?si=B_yh_gVKdpuMi5Zv" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6z"/></svg></a>
+          <a href="https://wa.me/918569903818" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm5.8 14.2c-.24.68-1.4 1.3-1.93 1.38-.5.08-1.13.11-1.83-.12-.42-.13-.96-.31-1.66-.61-2.9-1.25-4.8-4.17-4.95-4.36-.14-.19-1.18-1.57-1.18-3 0-1.43.75-2.13 1.02-2.42.27-.29.58-.36.78-.36.19 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.83 2.01.9 2.16.07.14.12.31.02.5-.1.19-.15.31-.29.48-.14.17-.3.38-.43.51-.14.14-.29.29-.12.57.17.29.75 1.24 1.62 2.01 1.12.99 2.06 1.3 2.34 1.45.29.14.45.12.62-.07.17-.19.72-.84.91-1.13.19-.29.38-.24.64-.14.26.1 1.67.79 1.96.93.29.14.48.22.55.34.07.12.07.7-.17 1.38z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" id="toTop" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox__close" id="lbClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg></button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lbPrev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M15 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <img class="lightbox__img" id="lbImg" src="" alt="Enlarged view" />
+    <button class="lightbox__nav lightbox__nav--next" id="lbNext" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <div class="lightbox__counter" id="lbCounter"></div>
+  </div>
+
+  <script src="js/products.js?v=20260805"></script>
+  <script src="js/script.js?v=20260805"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    // Update breadcrumb name once product loads
+    window.addEventListener("load", () => {
+      const params = new URLSearchParams(location.search);
+      const p = getProductById(params.get("id") || PRODUCTS[0].id);
+      if (p) document.getElementById("crumbName").textContent = p.name;
+    });
+  </script>
+</body>
+</html>
