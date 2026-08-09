@@ -83,9 +83,15 @@
             <div class="spec" style="grid-column: 1 / -1;"><dt>Available Sizes</dt><dd id="specSizes">—</dd></div>
           </dl>
 
+          <!-- Design service type -->
+          <h3 style="margin-bottom: var(--space-2);">Design</h3>
+          <div class="custom-options" id="optDesign" style="margin-bottom: var(--space-4);"></div>
+
           <!-- Material table -->
-          <h3 style="margin-bottom: var(--space-2);">Material Details</h3>
-          <table class="material-table" id="matTable"></table>
+          <div id="materialSection">
+            <h3 style="margin-bottom: var(--space-2);">Material Details</h3>
+            <table class="material-table" id="matTable"></table>
+          </div>
 
           <!-- Stitching tiers -->
           <h3 style="margin-bottom: var(--space-2);">Stitching Options</h3>
@@ -122,7 +128,7 @@
 
           <!-- Price summary -->
           <div class="price-summary">
-            <div class="price-summary__row"><span>Material Cost</span><span id="sumMaterial">—</span></div>
+            <div class="price-summary__row" id="sumMaterialRow"><span>Material Cost</span><span id="sumMaterial">—</span></div>
             <div class="price-summary__row"><span>Stitching Cost</span><span id="sumStitching">—</span></div>
             <div class="price-summary__row"><span>Embroidery</span><span id="sumEmbroidery">—</span></div>
             <div class="price-summary__row"><span>Delivery (Pan India)</span><span id="sumDelivery">₹150</span></div>
