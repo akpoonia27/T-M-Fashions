@@ -280,6 +280,24 @@ function initProduct() {
   $("#specOccasion").textContent = p.occasion;
   $("#specSizes").innerHTML = p.availableSizes.map(s => `<span class="pill">${s}</span>`).join("") + `<span class="pill">Custom Size</span>`;
 
+  /* Design service type */
+  const DESIGN_OPTIONS = [
+    { value: "with-fabric", label: "Stitching with Fabric" },
+    { value: "stitching-only", label: "Stitching Only" }
+  ];
+  let designType = "with-fabric";
+
+  $("#optDesign").innerHTML = DESIGN_OPTIONS.map(o =>
+    `<button type="button" class="opt ${designType === o.value ? "selected" : ""}" data-design="${o.value}">${o.label}</button>`
+  ).join("");
+  $("#optDesign").addEventListener("click", (e) => {
+    const opt = e.target.closest(".opt");
+    if (!opt) return;
+    designType = opt.dataset.design;
+    $$("#optDesign .opt").forEach(o => o.classList.toggle("selected", o.dataset.design === designType));
+    recalc();
+  });
+
   /* Material table */
   $("#matTable").innerHTML = `
     <tr><th>Material</th><th>Quantity</th><th>Price</th></tr>
@@ -367,14 +385,23 @@ function initProduct() {
   function recalc() {
     const stitch = STITCHING_TIERS[selectedTier].price;
     const emb = state.embroidery.reduce((s, e) => s + e.price, 0);
-    const total = mat + stitch + p.deliveryCharge + emb;
-    $("#sumMaterial").textContent = inr(mat);
+    const withFabric = designType === "with-fabric";
+    const matCharge = withFabric ? mat : 0;
+    const total = matCharge + stitch + p.deliveryCharge + emb;
+    const materialSection = $("#materialSection");
+    const sumMaterialRow = $("#sumMaterialRow");
+    if (materialSection) materialSection.style.display = withFabric ? "" : "none";
+    if (sumMaterialRow) sumMaterialRow.style.display = withFabric ? "" : "none";
+    if (withFabric) $("#sumMaterial").textContent = inr(mat);
     $("#sumStitching").textContent = inr(stitch);
     $("#sumDelivery").textContent = inr(p.deliveryCharge);
     $("#sumEmbroidery").textContent = emb ? inr(emb) : "—";
     $("#sumTotal").textContent = inr(total);
-    $("#startingNote").textContent = `Starting from ${inr(base)}`;
+    $("#startingNote").textContent = withFabric
+      ? `Starting from ${inr(base)}`
+      : `Starting from ${inr(p.stitchingPrice + p.deliveryCharge)}`;
     state.total = total;
+    state.designType = designType;
   }
   recalc();
 
@@ -391,6 +418,7 @@ Design Code: ${p.designCode}
 Category: ${p.category}
 
 Selected Options:
+• Design: ${state.designType === "stitching-only" ? "Stitching Only" : "Stitching with Fabric"}
 • Fabric: ${state.fabric}
 • Colour: ${state.colour}
 • Sleeve: ${state.sleeve}
@@ -400,7 +428,7 @@ Selected Options:
 • Embroidery: ${emb}
 
 Price: ${inr(state.total)}
-(Includes material + stitching + pan-India delivery)
+(${state.designType === "stitching-only" ? "Includes stitching + pan-India delivery" : "Includes material + stitching + pan-India delivery"})
 
 Thank you!`;
     const url = `https://wa.me/${BRAND.whatsapp}?text=${encodeURIComponent(msg)}`;
@@ -452,8 +480,7 @@ Thank you!`;
 /* ----------------------------------------------------------------------------
    12. BOOT
    ---------------------------------------------------------------------------- */
-document.addEventListener("DOMContentLoaded", async () => {
-  if (window.productsReady) await window.productsReady;
+document.addEventListener("DOMContentLoaded", () => {
   initHeader();
   initLightbox();
   initHome();
