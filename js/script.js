@@ -248,7 +248,6 @@ function initProduct() {
 
   const mainImg = $("#galleryMainImg");
   const thumbs = $("#galleryThumbs");
-  const zoomHint = $("#zoomHint");
 
   const setImg = (i) => {
     activeImg = i;
@@ -280,12 +279,12 @@ function initProduct() {
   $("#specOccasion").textContent = p.occasion;
   $("#specSizes").innerHTML = p.availableSizes.map(s => `<span class="pill">${s}</span>`).join("") + `<span class="pill">Custom Size</span>`;
 
-  /* Design service type */
+  /* Design service type — default to Stitching Only */
   const DESIGN_OPTIONS = [
-    { value: "with-fabric", label: "Stitching with Fabric" },
-    { value: "stitching-only", label: "Stitching Only" }
+    { value: "stitching-only", label: "Stitching Only" },
+    { value: "with-fabric", label: "Stitching with Fabric" }
   ];
-  let designType = "with-fabric";
+  let designType = "stitching-only";
 
   $("#optDesign").innerHTML = DESIGN_OPTIONS.map(o =>
     `<button type="button" class="opt ${designType === o.value ? "selected" : ""}" data-design="${o.value}">${o.label}</button>`
@@ -388,11 +387,25 @@ function initProduct() {
     const withFabric = designType === "with-fabric";
     const matCharge = withFabric ? mat : 0;
     const total = matCharge + stitch + p.deliveryCharge + emb;
+
     const materialSection = $("#materialSection");
     const sumMaterialRow = $("#sumMaterialRow");
+    const sumEmbroideryRow = $("#sumEmbroideryRow");
+    const grpFabric = $("#grpFabric");
+    const grpColour = $("#grpColour");
+    const grpEmbroidery = $("#grpEmbroidery");
+
     if (materialSection) materialSection.style.display = withFabric ? "" : "none";
     if (sumMaterialRow) sumMaterialRow.style.display = withFabric ? "" : "none";
-    if (withFabric) $("#sumMaterial").textContent = inr(mat);
+    if (sumEmbroideryRow) sumEmbroideryRow.style.display = withFabric ? "" : "none";
+    if (grpFabric) grpFabric.style.display = withFabric ? "" : "none";
+    if (grpColour) grpColour.style.display = withFabric ? "" : "none";
+    if (grpEmbroidery) grpEmbroidery.style.display = withFabric ? "" : "none";
+
+    if (withFabric) {
+      $("#sumMaterial").textContent = inr(mat);
+      $("#sumEmbroidery").textContent = inr(emb);
+    }
     $("#sumStitching").textContent = inr(stitch);
     $("#sumDelivery").textContent = inr(p.deliveryCharge);
     $("#sumEmbroidery").textContent = emb ? inr(emb) : "—";
