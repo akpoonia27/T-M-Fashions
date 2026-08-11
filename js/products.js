@@ -72,26 +72,13 @@ const CUSTOMIZATION_OPTIONS = {
    STITCHING TIERS  (shown as pricing cards on the product page)
    ---------------------------------------------------------------------------- */
 const STITCHING_TIERS = [
-  {
-    name: "Basic Stitching",
-    price: 800,
-    description: "Standard fit & finish with neat hemming and basic lining.",
-    features: ["Standard measurements", "Plain lining", "Machine finishing", "5–7 day delivery"]
-  },
-  {
+    {
     name: "Designer Stitching",
     price: 1500,
     description: "Tailored silhouette with designer detailing and premium lining.",
     features: ["Custom body fit", "Premium lining", "Designer finishing", "Hook & zip", "7–10 day delivery"],
     popular: true
-  },
-  {
-    name: "Premium Bridal Finish",
-    price: 3500,
-    description: "Couture-level construction with inner cancan, padding and hand finishing.",
-    features: ["Couture construction", "Inner cancan & padding", "Hand finishing", "Fall & picot", "10–14 day delivery"]
-  }
-];
+  }];
 
 /* ----------------------------------------------------------------------------
    DELIVERY  (flat across India)
