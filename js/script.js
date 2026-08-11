@@ -311,7 +311,7 @@ function initProduct() {
   let selectedTier = STITCHING_TIERS.findIndex(t => t.price === p.stitchingPrice);
   if (selectedTier < 0) selectedTier = 1;
   tiersEl.innerHTML = STITCHING_TIERS.map((t, i) => `
-    <button class="tier ${i === selectedTier ? "selected" : ""}" data-i="${i}">
+    <button class="margin-bottom: var(--space-2);" data-i="${i}">
       ${t.popular ? '<span class="tier__tag">Popular</span>' : ""}
       <h4>${t.name}</h4>
       <div class="tier__price">${inr(t.price)}</div>
