@@ -936,3 +936,22 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .admin-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 .admin-toast--error { background: var(--error); }
+    .brand-logo {
+      display: block;
+      width: min(156px, 28vw);
+      height: 54px;
+      object-fit: contain;
+      object-position: center;
+    }
+    .footer-brand .brand-logo {
+      width: min(190px, 80vw);
+      height: 78px;
+      object-position: left center;
+    }
+    .loader__logo {
+      display: block;
+      width: min(260px, 70vw);
+      height: 118px;
+      object-fit: contain;
+      margin: 0 auto 12px;
+    }
