@@ -10,17 +10,42 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css?v=20260805" />
+  <style>
+    .brand-logo {
+      display: block;
+      width: min(156px, 28vw);
+      height: 54px;
+      object-fit: contain;
+      object-position: center;
+    }
+    .footer-brand .brand-logo {
+      width: min(190px, 80vw);
+      height: 78px;
+      object-position: left center;
+    }
+    .loader__logo {
+      display: block;
+      width: min(260px, 70vw);
+      height: 118px;
+      object-fit: contain;
+      margin: 0 auto 12px;
+    }
+    @media (max-width: 640px) {
+      .brand-logo { width: 132px; height: 46px; }
+      .footer-brand .brand-logo { width: 170px; height: 70px; }
+    }
+  </style>
 </head>
 <body>
 
   <div class="loader" id="loader">
-    <div class="loader__mark">TM FASHIONS</div>
+    <img class="loader__logo" src="/ChatGPT_Image_Aug_12,_2026,_06_59_30_AM.png" alt="TM Fashions" />
     <div class="loader__bar"></div>
   </div>
 
   <header class="site-header" id="header">
     <nav class="nav">
-      <a class="brand" href="index.html">TM<span class="brand-mark">F</span>ashions<small>BOUTIQUE</small></a>
+      <a class="brand" href="index.html" aria-label="TM Fashions home"><img class="brand-logo" src="/ChatGPT_Image_Aug_12,_2026,_06_59_30_AM.png" alt="TM Fashions" /></a>
       <div class="nav-links">
         <a class="nav-link" href="index.html">Home</a>
         <a class="nav-link" href="designs.html">Designs</a>
@@ -177,7 +202,7 @@ TM Fashions Design began with a love for hand embroidery and custom tailoring. T
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a class="brand" href="index.html" style="color: var(--white);">TM<span class="brand-mark">F</span>ashions<small style="color: var(--gold-300);">BOUTIQUE</small></a>
+          <a class="brand" href="index.html" aria-label="TM Fashions home"><img class="brand-logo" src="/ChatGPT_Image_Aug_12,_2026,_06_59_30_AM.png" alt="TM Fashions" /></a>
           <p>Couture for the modern muse. Handcrafted Indian designer wear, made to order and delivered across India.</p>
         </div>
         <div class="footer-col">

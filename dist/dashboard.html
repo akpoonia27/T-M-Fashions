@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@0,400;0,500;0,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" crossorigin href="/assets/style-CG3fZPjc.css">
+  <link rel="stylesheet" href="css/style.css?v=20260805" />
 </head>
 <body class="admin-body">
 
@@ -135,6 +135,8 @@
             </div>
           </div>
           <div class="admin-thumbs" id="imagePreview"></div>
+          <span class="admin-hint">You can also paste image URLs directly below.</span>
+          <textarea id="pImageUrls" rows="2" placeholder="Or paste image URLs, one per line"></textarea>
         </div>
 
         <!-- MATERIAL COST -->
@@ -196,7 +198,6 @@
   <!-- Toast notification -->
   <div class="admin-toast" id="toast"></div>
 
-  <script src="js/products.js?v=20260805"></script>
   <script>
     /* ================================================================
        TM FASHIONS — ADMIN DASHBOARD
@@ -232,8 +233,9 @@
     /* Seed from the hardcoded catalogue on first visit */
     function ensureSeeded() {
       let products = loadProducts();
-      if (!products || !products.length) {
-        if (window.PRODUCTS && Array.isArray(window.PRODUCTS) && window.PRODUCTS.length) {
+      if (!products) {
+        // Pull from the global PRODUCTS array if available
+        if (window.PRODUCTS && Array.isArray(window.PRODUCTS)) {
           saveProducts(window.PRODUCTS);
           products = window.PRODUCTS;
         } else {
@@ -316,6 +318,7 @@
       document.getElementById("editId").value = "";
       document.getElementById("pDelivery").value = DELIVERY;
       document.getElementById("imagePreview").innerHTML = "";
+      document.getElementById("pImageUrls").value = "";
       showForm(false);
     });
 
@@ -336,6 +339,7 @@
       document.getElementById("pFabric").value = p.fabric || "";
       document.getElementById("pSizes").value = (p.availableSizes || []).join(", ");
       document.getElementById("pDesc").value = p.description || "";
+      document.getElementById("pImageUrls").value = (p.images || []).join("\n");
       document.getElementById("mFabQty").value = p.materialCost?.fabric?.quantity || "";
       document.getElementById("mFabPrice").value = p.materialCost?.fabric?.price || "";
       document.getElementById("mLinQty").value = p.materialCost?.lining?.quantity || "";
@@ -418,7 +422,10 @@
     document.getElementById("productForm").addEventListener("submit", (e) => {
       e.preventDefault();
 
-      const images = uploadedImages.map(i => i.dataUrl);
+      // Gather images: uploaded first, then any URLs from textarea
+      const urlLines = document.getElementById("pImageUrls").value
+        .split("\n").map(s => s.trim()).filter(Boolean);
+      const images = uploadedImages.map(i => i.dataUrl).concat(urlLines);
 
       if (!images.length) { toast("Please add at least one photo", "error"); return; }
 

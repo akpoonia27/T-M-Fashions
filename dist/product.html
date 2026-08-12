@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" crossorigin href="/assets/style-CG3fZPjc.css">
+  <link rel="stylesheet" href="css/style.css?v=20260805" />
 </head>
 <body>
 
@@ -83,22 +83,28 @@
             <div class="spec" style="grid-column: 1 / -1;"><dt>Available Sizes</dt><dd id="specSizes">—</dd></div>
           </dl>
 
+          <!-- Design service type -->
+          <h3 style="margin-bottom: var(--space-2);">Design</h3>
+          <div class="custom-options" id="optDesign" style="margin-bottom: var(--space-4);"></div>
+
           <!-- Material table -->
-          <h3 style="margin-bottom: var(--space-2);">Material Details</h3>
-          <table class="material-table" id="matTable"></table>
+          <div id="materialSection">
+            <h3 style="margin-bottom: var(--space-2);">Material Details</h3>
+            <table class="material-table" id="matTable"></table>
+          </div>
 
           <!-- Stitching tiers -->
           <h3 style="margin-bottom: var(--space-2);">Stitching Options</h3>
-          <div class="tiers" id="stitchingTiers"></div>
+          <div class="tier selected price-summary" id="stitchingTiers"></div>
 
           <!-- Customization -->
           <div class="custom-panel">
             <h3>Customise Your Design</h3>
-            <div class="custom-group">
+            <div class="custom-group" id="grpFabric">
               <label>Fabric Type</label>
               <div class="custom-options" id="optFabric"></div>
             </div>
-            <div class="custom-group">
+            <div class="custom-group" id="grpColour">
               <label>Colour</label>
               <div class="custom-options" id="optColour"></div>
             </div>
@@ -110,21 +116,17 @@
               <label>Neck Design</label>
               <div class="custom-options" id="optNeck"></div>
             </div>
-            <div class="custom-group">
+            <div class="custom-group" style="margin-bottom: 0;">
               <label>Size</label>
               <div class="size-row" id="optSize"></div>
             </div>
-            <div class="custom-group" style="margin-bottom: 0;">
-              <label>Embroidery <span class="muted" style="text-transform:none; letter-spacing:0; font-size:.7rem;">(select any combination)</span></label>
-              <div class="custom-options" id="optEmbroidery"></div>
-            </div>
+
           </div>
 
           <!-- Price summary -->
           <div class="price-summary">
-            <div class="price-summary__row"><span>Material Cost</span><span id="sumMaterial">—</span></div>
+            <div class="price-summary__row" id="sumMaterialRow"><span>Material Cost</span><span id="sumMaterial">—</span></div>
             <div class="price-summary__row"><span>Stitching Cost</span><span id="sumStitching">—</span></div>
-            <div class="price-summary__row"><span>Embroidery</span><span id="sumEmbroidery">—</span></div>
             <div class="price-summary__row"><span>Delivery (Pan India)</span><span id="sumDelivery">₹150</span></div>
             <div class="price-summary__row price-summary__row--total"><span>Total Price</span><span id="sumTotal">—</span></div>
             <div class="muted" style="font-size:.78rem; margin-top:.5rem;" id="startingNote">Starting from —</div>
@@ -211,8 +213,8 @@
     <div class="lightbox__counter" id="lbCounter"></div>
   </div>
 
-  <script src="js/products.js?v=20260805"></script>
-  <script src="js/script.js?v=20260805"></script>
+  <script src="js/products.js?v=20260806"></script>
+  <script src="js/script.js?v=20260806"></script>
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
     // Update breadcrumb name once product loads

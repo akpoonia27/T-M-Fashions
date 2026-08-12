@@ -57,41 +57,8 @@ const CUSTOMIZATION_OPTIONS = {
   fabricTypes: ["Silk", "Chiffon", "Georgette", "Cotton", "Velvet", "Organza", "Net", "Crepe"],
   colours: ["Ivory", "Blush Rose", "Champagne Gold", "Emerald", "Maroon", "Royal Blue", "Mint", "Charcoal"],
   sleeveStyles: ["Sleeveless", "Cap Sleeve", "Short Sleeve", "Three-Quarter", "Full Sleeve", "Bell Sleeve"],
-  neckDesigns: ["Round Neck", "V-Neck", "Boat Neck", "High Collar", "Sweetheart", "Keyhole"],
-  embroidery: [
-    { name: "Hand Work",   price: 1200 },
-    { name: "Machine Work", price: 600 },
-    { name: "Zari",         price: 1800 },
-    { name: "Sequins",      price: 900 },
-    { name: "Stone Work",   price: 2200 },
-    { name: "Mirror Work", price: 1500 }
-  ]
+  neckDesigns: ["Round Neck", "V-Neck", "Boat Neck", "High Collar", "Sweetheart", "Keyhole"]
 };
-
-/* ----------------------------------------------------------------------------
-   STITCHING TIERS  (shown as pricing cards on the product page)
-   ---------------------------------------------------------------------------- */
-const STITCHING_TIERS = [
-  {
-    name: "Basic Stitching",
-    price: 800,
-    description: "Standard fit & finish with neat hemming and basic lining.",
-    features: ["Standard measurements", "Plain lining", "Machine finishing", "5–7 day delivery"]
-  },
-  {
-    name: "Designer Stitching",
-    price: 1500,
-    description: "Tailored silhouette with designer detailing and premium lining.",
-    features: ["Custom body fit", "Premium lining", "Designer finishing", "Hook & zip", "7–10 day delivery"],
-    popular: true
-  },
-  {
-    name: "Premium Bridal Finish",
-    price: 3500,
-    description: "Couture-level construction with inner cancan, padding and hand finishing.",
-    features: ["Couture construction", "Inner cancan & padding", "Hand finishing", "Fall & picot", "10–14 day delivery"]
-  }
-];
 
 /* ----------------------------------------------------------------------------
    DELIVERY  (flat across India)
@@ -102,7 +69,7 @@ const DELIVERY_CHARGE = 150;
 /* ----------------------------------------------------------------------------
    THE PRODUCT CATALOGUE  ←  add / edit dresses below
    ---------------------------------------------------------------------------- */
-const PRODUCTS = [
+const _HARDCODED_PRODUCTS = [
   {
     id: 1,
     name: "Rosalind Anarkali",
@@ -429,17 +396,29 @@ const PRODUCTS = [
 ];
 
 /* ----------------------------------------------------------------------------
+   LOAD PRODUCTS — read from localStorage first (admin-edited data),
+   fall back to the hardcoded catalogue above.
+   ---------------------------------------------------------------------------- */
+let PRODUCTS;
+try {
+  const stored = JSON.parse(localStorage.getItem("tmf_products"));
+  PRODUCTS = (Array.isArray(stored) && stored.length) ? stored : _HARDCODED_PRODUCTS;
+} catch (e) {
+  PRODUCTS = _HARDCODED_PRODUCTS;
+}
+
+/* ----------------------------------------------------------------------------
    HELPER: compute the "starting price" shown on cards
    (material total + default stitching + delivery)
    ---------------------------------------------------------------------------- */
 function materialTotal(p) {
-  return p.materialCost.fabric.price +
-         p.materialCost.lining.price +
-         p.materialCost.lace.price +
-         p.materialCost.accessories.price;
+  return (p.materialCost?.fabric?.price || 0) +
+         (p.materialCost?.lining?.price || 0) +
+         (p.materialCost?.lace?.price || 0) +
+         (p.materialCost?.accessories?.price || 0);
 }
 function startingPrice(p) {
-  return materialTotal(p) + p.stitchingPrice + p.deliveryCharge;
+  return materialTotal(p) + (p.stitchingPrice || 0) + (p.deliveryCharge || DELIVERY_CHARGE);
 }
 
 /* ----------------------------------------------------------------------------
@@ -458,7 +437,6 @@ const CATEGORIES = ["All", ...Array.from(new Set(PRODUCTS.map(p => p.category)))
 if (typeof window !== "undefined") {
   window.PRODUCTS = PRODUCTS;
   window.CUSTOMIZATION_OPTIONS = CUSTOMIZATION_OPTIONS;
-  window.STITCHING_TIERS = STITCHING_TIERS;
   window.DELIVERY_CHARGE = DELIVERY_CHARGE;
   window.CATEGORIES = CATEGORIES;
   window.materialTotal = materialTotal;
