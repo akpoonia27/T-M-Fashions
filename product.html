@@ -100,11 +100,11 @@
           <!-- Customization -->
           <div class="custom-panel">
             <h3>Customise Your Design</h3>
-            <div class="custom-group">
+            <div class="custom-group" id="grpFabric">
               <label>Fabric Type</label>
               <div class="custom-options" id="optFabric"></div>
             </div>
-            <div class="custom-group">
+            <div class="custom-group" id="grpColour">
               <label>Colour</label>
               <div class="custom-options" id="optColour"></div>
             </div>
@@ -116,21 +116,17 @@
               <label>Neck Design</label>
               <div class="custom-options" id="optNeck"></div>
             </div>
-            <div class="custom-group">
+            <div class="custom-group" style="margin-bottom: 0;">
               <label>Size</label>
               <div class="size-row" id="optSize"></div>
             </div>
-            <div class="custom-group" style="margin-bottom: 0;">
-              <label>Embroidery <span class="muted" style="text-transform:none; letter-spacing:0; font-size:.7rem;">(select any combination)</span></label>
-              <div class="custom-options" id="optEmbroidery"></div>
-            </div>
+
           </div>
 
           <!-- Price summary -->
           <div class="price-summary">
             <div class="price-summary__row" id="sumMaterialRow"><span>Material Cost</span><span id="sumMaterial">—</span></div>
             <div class="price-summary__row"><span>Stitching Cost</span><span id="sumStitching">—</span></div>
-            <div class="price-summary__row"><span>Embroidery</span><span id="sumEmbroidery">—</span></div>
             <div class="price-summary__row"><span>Delivery (Pan India)</span><span id="sumDelivery">₹150</span></div>
             <div class="price-summary__row price-summary__row--total"><span>Total Price</span><span id="sumTotal">—</span></div>
             <div class="muted" style="font-size:.78rem; margin-top:.5rem;" id="startingNote">Starting from —</div>
