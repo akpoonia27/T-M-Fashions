@@ -3,50 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TM Fashions — Luxury Indian Designer Wear | Couture Boutique</title>
-  <meta name="description" content="TM Fashions — handcrafted Indian designer wear made to order. Anarkalis, lehengas, bridal wear, gowns and more. Stitched to your measurements, delivered across India." />
-  <link rel="canonical" href="https://tmfashions.github.io/index.html" />
+  <title>TM Fashions — Couture for the Modern Muse | Luxury Indian Designer Boutique</title>
+  <meta name="description" content="TM Fashions is a luxury Indian women's designer boutique. Explore handcrafted anarkalis, lehengas, bridal wear, gowns and more with custom stitching and pan-India delivery." />
+  <meta name="keywords" content="luxury fashion, Indian designer boutique, lehenga, anarkali, bridal wear, salwar suit, kurti, palazzo, sharara, gown, custom stitching" />
+  <meta name="author" content="TM Fashions" />
+  <meta property="og:title" content="TM Fashions — Couture for the Modern Muse" />
+  <meta property="og:description" content="Luxury Indian women's designer boutique. Handcrafted dresses with custom stitching and pan-India delivery." />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://tmfashions.github.io/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css?v=20260805" />
-  <style>
-    .brand-logo {
-      display: block;
-      width: min(156px, 28vw);
-      height: 54px;
-      object-fit: contain;
-      object-position: center;
-    }
-    .footer-brand .brand-logo {
-      width: min(190px, 80vw);
-      height: 78px;
-      object-position: left center;
-    }
-    .loader__logo {
-      display: block;
-      width: min(260px, 70vw);
-      height: 118px;
-      object-fit: contain;
-      margin: 0 auto 12px;
-    }
-    @media (max-width: 640px) {
-      .brand-logo { width: 132px; height: 46px; }
-      .footer-brand .brand-logo { width: 170px; height: 70px; }
-    }
-  </style>
+  <meta property="og:image" content="https://bolt.new/static/og_default.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://bolt.new/static/og_default.png">
 </head>
 <body>
 
+  <!-- LOADER -->
   <div class="loader" id="loader">
-    <img class="loader__logo" src="/ChatGPT_Image_Aug_12,_2026,_06_59_30_AM.png" alt="TM Fashions" />
+    <div class="loader__mark">TM FASHIONS</div>
     <div class="loader__bar"></div>
   </div>
 
+  <!-- HEADER -->
   <header class="site-header" id="header">
     <nav class="nav">
-      <a class="brand" href="index.html" aria-label="TM Fashions home"><img class="brand-logo" src="/ChatGPT_Image_Aug_12,_2026,_06_59_30_AM.png" alt="TM Fashions" /></a>
-      <div class="nav-links">
+    <a class="brand" href="index.html" aria-label="TM Fashions home"><img class="brand-logo" src="/ChatGPT_Image_Aug_12,_2026,_06_59_30_AM.png" alt="TM Fashions"></a>
+        <div class="nav-links">
         <a class="nav-link active" href="index.html">Home</a>
         <a class="nav-link" href="designs.html">Designs</a>
         <a class="nav-link" href="designs.html?cat=Bridal Wear">Bridal</a>
@@ -59,6 +44,7 @@
     </nav>
   </header>
 
+  <!-- MOBILE NAV -->
   <div class="mobile-nav" id="mobileNav">
     <a href="index.html">Home</a>
     <a href="designs.html">Designs</a>
@@ -69,146 +55,70 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero__bg" style="background-image:url('https://images.pexels.com/photos/30184702/pexels-photo-30184702.jpeg?auto=compress&cs=tinysrgb&w=1920');"></div>
+    <div class="hero__bg"></div>
     <div class="hero__overlay"></div>
     <div class="hero__content">
-      <span class="eyebrow reveal" data-delay="1">Couture · Made to Order · Pan India</span>
-      <h1 class="reveal hero__title" data-delay="2">Couture for the<br/>modern muse</h1>
-      <p class="reveal hero__lede" data-delay="3">Handcrafted Indian designer wear — anarkalis, lehengas, bridal trousseau and gowns — stitched to your measurements and delivered to your door.</p>
-      <div class="reveal hero__actions" data-delay="4">
-        <a class="btn btn--gold" href="designs.html">Explore the Collection</a>
-        <a class="btn btn--ghost" href="contact.html">Book an Appointment</a>
+      <span class="eyebrow reveal">Est. 2014 · Bahadurgarh</span>
+      <h1 class="reveal" data-delay="1">TM <em>Fashions</em></h1>
+      <p class="hero__tagline reveal" data-delay="2">Couture for the modern muse — handcrafted Indian silhouettes, tailored to you and delivered across India.</p>
+      <div class="hero__actions reveal" data-delay="3">
+        <a class="btn btn--gold" href="designs.html">Explore Collection</a>
+        <a class="btn btn--ghost-light" href="contact.html">Contact Designer</a>
       </div>
     </div>
-    <a href="#featured" class="hero__scroll reveal" data-delay="5" aria-label="Scroll down">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M5 12l7 7 7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
+    <div class="hero__scroll">Scroll</div>
   </section>
 
-  <!-- MARQUEE STRIP -->
-  <section class="marquee">
-    <div class="marquee__track">
-      <span>Anarkali</span><span>·</span><span>Lehenga</span><span>·</span><span>Bridal Wear</span><span>·</span><span>Gown</span><span>·</span><span>Sharara</span><span>·</span><span>Palazzo</span><span>·</span><span>Kurti</span><span>·</span><span>Punjabi Suit</span><span>·</span>
-      <span>Anarkali</span><span>·</span><span>Lehenga</span><span>·</span><span>Bridal Wear</span><span>·</span><span>Gown</span><span>·</span><span>Sharara</span><span>·</span><span>Palazzo</span><span>·</span><span>Kurti</span><span>·</span><span>Punjabi Suit</span><span>·</span>
+  <!-- FEATURED CATEGORIES -->
+  <section class="section section--cream">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow reveal">The Wardrobe</span>
+        <h2 class="reveal" data-delay="1">Shop by Silhouette</h2>
+        <div class="divider"></div>
+        <p class="reveal" data-delay="2">Eleven distinct forms, each cut and embroidered by hand in our Bahadurgarh studio.</p>
+      </div>
+      <div class="cat-grid" id="catGrid"></div>
     </div>
   </section>
 
   <!-- FEATURED COLLECTION -->
-  <section class="section section--cream" id="featured">
+  <section class="section section--beige">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow reveal">Featured Designs</span>
-        <h2 class="reveal" data-delay="1">Signature pieces from the studio</h2>
-        <p class="reveal section-head__sub" data-delay="2">A curated selection of our latest creations — each made to order and stitched to your exact measurements.</p>
+        <span class="eyebrow reveal">Curated Selection</span>
+        <h2 class="reveal" data-delay="1">Featured Collection</h2>
+        <div class="divider"></div>
+        <p class="reveal" data-delay="2">A glimpse of this season's most-loved designs — each made to order.</p>
       </div>
       <div class="product-grid" id="featuredGrid"></div>
-      <div class="section-foot reveal">
+      <div class="text-center mt-5 reveal">
         <a class="btn btn--outline" href="designs.html">View All Designs</a>
       </div>
     </div>
   </section>
 
-  <!-- CRAFT BANNER -->
-  <section class="craft-banner">
-    <div class="craft-banner__bg" style="background-image:url('https://images.pexels.com/photos/14952771/pexels-photo-14952771.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
-    <div class="craft-banner__overlay"></div>
-    <div class="container craft-banner__content">
-      <span class="eyebrow reveal" data-delay="1">The Atelier</span>
-      <h2 class="reveal" data-delay="2">Every stitch,<br/>told by hand.</h2>
-      <p class="reveal" data-delay="3">From fabric sourcing to the final fitting, each piece is crafted in our Bahadurgarh studio. Resham embroidery, zardozi work, gota-patti — the techniques are heritage; the silhouettes are unmistakably now.</p>
-      <a class="btn btn--gold reveal" data-delay="4" href="designs.html">See the Craft</a>
-    </div>
-  </section>
-
-  <!-- CATEGORY GRID -->
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow reveal">Shop by Category</span>
-        <h2 class="reveal" data-delay="1">Find your silhouette</h2>
-      </div>
-      <div class="cat-grid">
-        <a class="cat-card reveal" href="designs.html?cat=Bridal Wear">
-          <img src="https://images.pexels.com/photos/17284335/pexels-photo-17284335.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Bridal Wear" loading="lazy" />
-          <div class="cat-card__overlay"></div>
-          <span class="cat-card__label">Bridal Wear</span>
-        </a>
-        <a class="cat-card reveal" data-delay="1" href="designs.html?cat=Lehenga">
-          <img src="https://images.pexels.com/photos/11726516/pexels-photo-11726516.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Lehenga" loading="lazy" />
-          <div class="cat-card__overlay"></div>
-          <span class="cat-card__label">Lehenga</span>
-        </a>
-        <a class="cat-card reveal" data-delay="2" href="designs.html?cat=Anarkali">
-          <img src="https://images.pexels.com/photos/14205210/pexels-photo-14205210.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Anarkali" loading="lazy" />
-          <div class="cat-card__overlay"></div>
-          <span class="cat-card__label">Anarkali</span>
-        </a>
-        <a class="cat-card reveal" data-delay="3" href="designs.html?cat=Gown">
-          <img src="https://images.pexels.com/photos/5197764/pexels-photo-5197764.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Gown" loading="lazy" />
-          <div class="cat-card__overlay"></div>
-          <span class="cat-card__label">Gown</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
+  <!-- CUSTOMER EXPERIENCE -->
   <section class="section section--cream">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow reveal">How It Works</span>
-        <h2 class="reveal" data-delay="1">From sketch to your doorstep</h2>
+        <span class="eyebrow reveal">The TM Fashions Promise</span>
+        <h2 class="reveal" data-delay="1">Crafted Around You</h2>
+        <div class="divider"></div>
+        <p class="reveal" data-delay="2">Every piece begins with your measurements and ends at your doorstep — beautifully.</p>
       </div>
-      <div class="steps">
-        <div class="step reveal">
-          <span class="step__num">01</span>
-          <h3>Choose a Design</h3>
-          <p>Browse the collection and pick a silhouette you love — or send a reference for something bespoke.</p>
-        </div>
-        <div class="step reveal" data-delay="1">
-          <span class="step__num">02</span>
-          <h3>Customise &amp; Measure</h3>
-          <p>Select your fabric, colours and sleeve or neck style. Share your measurements or visit the studio for a fitting.</p>
-        </div>
-        <div class="step reveal" data-delay="2">
-          <span class="step__num">03</span>
-          <h3>We Stitch to Order</h3>
-          <p>Each piece is hand-stitched in our atelier with the embroidery and finish you chose.</p>
-        </div>
-        <div class="step reveal" data-delay="3">
-          <span class="step__num">04</span>
-          <h3>Delivered Across India</h3>
-          <p>Securely packaged and shipped to your door anywhere in India — flat ₹150 delivery.</p>
-        </div>
-      </div>
+      <div class="features" id="features"></div>
     </div>
   </section>
 
-  <!-- TESTIMONIAL -->
-  <section class="section">
-    <div class="container">
-      <figure class="testimonial reveal">
-        <blockquote>
-          "The lehenga was even more breathtaking in person. The fit was perfect and the embroidery was exquisite — exactly the dream piece I wanted for my wedding."
-        </blockquote>
-        <figcaption>
-          <strong>Ananya R.</strong>
-          <span>Bride · New Delhi</span>
-        </figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- CTA BAND -->
-  <section class="cta-band">
-    <div class="container cta-band__inner">
-      <div class="reveal">
-        <h2>Ready to wear something made just for you?</h2>
-        <p>Book a studio appointment or message us on WhatsApp — we'll help you design the perfect piece.</p>
-      </div>
-      <div class="reveal cta-band__actions" data-delay="1">
-        <a class="btn btn--gold" href="contact.html">Book an Appointment</a>
-        <a class="btn btn--ghost" href="https://wa.me/918569903818" target="_blank" rel="noopener">WhatsApp Us</a>
+  <!-- CTA STRIP -->
+  <section class="section--ink" style="padding: var(--space-7) 0;">
+    <div class="container container--narrow text-center">
+      <span class="eyebrow reveal">Made to Order</span>
+      <h2 class="reveal" data-delay="1" style="margin: var(--space-2) 0;">Your Design, Your Measurements</h2>
+      <p class="reveal" data-delay="2" style="color: var(--ink-300); max-width: 560px; margin: 0 auto var(--space-4);">Choose a silhouette, customise the fabric and embroidery, and we'll hand-stitch it to fit you perfectly — then deliver it across India.</p>
+      <div class="reveal" data-delay="3">
+        <a class="btn btn--gold" href="designs.html">Begin Your Order</a>
       </div>
     </div>
   </section>
@@ -218,7 +128,7 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a class="brand" href="index.html" aria-label="TM Fashions home"><img class="brand-logo" src="/ChatGPT_Image_Aug_12,_2026,_06_59_30_AM.png" alt="TM Fashions" /></a>
+          <a class="brand" href="index.html" aria-label="TM Fashions home"><img class="brand-logo" src="/ChatGPT_Image_Aug_12,_2026,_06_59_30_AM.png" alt="TM Fashions"></a>
           <p>Couture for the modern muse. Handcrafted Indian designer wear, made to order and delivered across India.</p>
         </div>
         <div class="footer-col">
@@ -260,8 +170,10 @@
     </div>
   </footer>
 
+  <!-- BACK TO TOP -->
   <button class="to-top" id="toTop" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19V5M5 12l7-7 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 
+  <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox">
     <button class="lightbox__close" id="lbClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg></button>
     <button class="lightbox__nav lightbox__nav--prev" id="lbPrev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M15 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -273,6 +185,49 @@
   <script src="js/products.js?v=20260806"></script>
   <script src="js/script.js?v=20260806"></script>
   <script>
+    // Category cards (home page)
+    const CATS = [
+      { name: "Salwar Suit", img: "https://images.pexels.com/photos/30876168/pexels-photo-30876168.jpeg?auto=compress&cs=tinysrgb&h=600&w=450" },
+      { name: "Anarkali", img: "https://images.pexels.com/photos/14205210/pexels-photo-14205210.jpeg?auto=compress&cs=tinysrgb&h=600&w=450" },
+      { name: "Punjabi Suit", img: "https://images.pexels.com/photos/30196701/pexels-photo-30196701.jpeg?auto=compress&cs=tinysrgb&h=600&w=450" },
+      { name: "Kurti", img: "https://images.pexels.com/photos/13178920/pexels-photo-13178920.jpeg?auto=compress&cs=tinysrgb&h=600&w=450" },
+      { name: "Palazzo", img: "https://images.pexels.com/photos/2659787/pexels-photo-2659787.jpeg?auto=compress&cs=tinysrgb&h=600&w=450" },
+      { name: "Sharara", img: "https://images.pexels.com/photos/8887117/pexels-photo-8887117.jpeg?auto=compress&cs=tinysrgb&h=600&w=450" },
+      { name: "Lehenga", img: "https://images.pexels.com/photos/11726516/pexels-photo-11726516.jpeg?auto=compress&cs=tinysrgb&h=600&w=450" },
+      { name: "Blouse", img: "https://images.pexels.com/photos/32519307/pexels-photo-32519307.jpeg?auto=compress&cs=tinysrgb&h=600&w=450" },
+      { name: "Gown", img: "https://images.pexels.com/photos/5197764/pexels-photo-5197764.jpeg?auto=compress&cs=tinysrgb&h=600&w=450" },
+      { name: "Bridal Wear", img: "https://images.pexels.com/photos/12959396/pexels-photo-12959396.jpeg?auto=compress&cs=tinysrgb&h=600&w=450" },
+      { name: "Party Wear", img: "https://images.pexels.com/photos/29069494/pexels-photo-29069494.jpeg?auto=compress&cs=tinysrgb&h=600&w=450" }
+    ];
+    const catGrid = document.getElementById("catGrid");
+    catGrid.innerHTML = CATS.map((c, i) =>
+      `<a class="cat-card reveal" data-delay="${(i % 4) + 1}" href="designs.html?cat=${encodeURIComponent(c.name)}">
+         <img src="${c.img}" alt="${c.name}" loading="lazy" />
+         <span class="cat-card__label"><span>${c.name}</span></span>
+       </a>`).join("");
+
+    // Features strip
+    const FEATURES = [
+      { icon: "needle", title: "Custom Stitching", text: "Every piece stitched to your exact measurements." },
+      { icon: "fabric", title: "Premium Fabric", text: "Hand-picked silks, chiffons & organza." },
+      { icon: "sparkle", title: "Designer Finishing", text: "Couture-level construction & detailing." },
+      { icon: "truck", title: "Pan India Delivery", text: "Flat ₹150 delivery to every pincode." },
+      { icon: "shield", title: "Secure Packaging", text: "Carefully boxed to arrive flawless." }
+    ];
+    const icons = {
+      needle: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 21l6-6m0 0l9-9a3 3 0 0 0-4-4l-9 9m4 4l-4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+      fabric: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 6c2 2 4 2 6 0s4-2 6 0 4 2 4 0M4 12c2 2 4 2 6 0s4-2 6 0 4 2 4 0M4 18c2 2 4 2 6 0s4-2 6 0 4 2 4 0" stroke-linecap="round"/></svg>',
+      sparkle: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z" stroke-linejoin="round"/></svg>',
+      truck: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7" stroke-linejoin="round"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>',
+      shield: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3l8 3v6c0 4.5-3.2 7.6-8 9-4.8-1.4-8-4.5-8-9V6l8-3z" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+    };
+    document.getElementById("features").innerHTML = FEATURES.map((f, i) =>
+      `<div class="feature reveal" data-delay="${(i % 3) + 1}">
+         <div class="feature__icon">${icons[f.icon]}</div>
+         <h4>${f.title}</h4>
+         <p>${f.text}</p>
+       </div>`).join("");
+
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
