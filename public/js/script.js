@@ -309,7 +309,7 @@ function initProduct() {
   /* Stitching — single Designer Stitching tier, price is per-design */
   const tiersEl = $("#stitchingTiers");
   tiersEl.innerHTML = `
-    <div class="tier selected">
+    <div>
       <h4>Designer Stitching</h4>
       <div class="tier__price">${inr(p.stitchingPrice)}</div>
       <p>Tailored silhouette with designer detailing and premium lining.</p>
