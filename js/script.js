@@ -297,15 +297,6 @@ function initProduct() {
     recalc();
   });
 
-  /* Material table */
-  $("#matTable").innerHTML = `
-    <tr><th>Material</th><th>Quantity</th><th>Price</th></tr>
-    <tr><td>Fabric</td><td>${p.materialCost.fabric.quantity}</td><td class="amt">${inr(p.materialCost.fabric.price)}</td></tr>
-    <tr><td>Lining</td><td>${p.materialCost.lining.quantity}</td><td class="amt">${inr(p.materialCost.lining.price)}</td></tr>
-    <tr><td>Lace</td><td>${p.materialCost.lace.quantity}</td><td class="amt">${inr(p.materialCost.lace.price)}</td></tr>
-    <tr><td>Accessories</td><td>—</td><td class="amt">${inr(p.materialCost.accessories.price)}</td></tr>
-  `;
-
   /* Stitching — single Designer Stitching tier, price is per-design */
   const tiersEl = $("#stitchingTiers");
   tiersEl.innerHTML = `
@@ -364,13 +355,9 @@ function initProduct() {
     const matCharge = withFabric ? mat : 0;
     const total = matCharge + stitch + p.deliveryCharge;
 
-    const materialSection = $("#materialSection");
-    const sumMaterialRow = $("#sumMaterialRow");
     const grpFabric = $("#grpFabric");
     const grpColour = $("#grpColour");
 
-    if (materialSection) materialSection.style.display = withFabric ? "" : "none";
-    if (sumMaterialRow) sumMaterialRow.style.display = withFabric ? "" : "none";
     if (grpFabric) grpFabric.style.display = withFabric ? "" : "none";
     if (grpColour) grpColour.style.display = withFabric ? "" : "none";
 
