@@ -248,7 +248,6 @@ function initProduct() {
 
   const mainImg = $("#galleryMainImg");
   const thumbs = $("#galleryThumbs");
-  const zoomHint = $("#zoomHint");
 
   const setImg = (i) => {
     activeImg = i;
@@ -280,12 +279,12 @@ function initProduct() {
   $("#specOccasion").textContent = p.occasion;
   $("#specSizes").innerHTML = p.availableSizes.map(s => `<span class="pill">${s}</span>`).join("") + `<span class="pill">Custom Size</span>`;
 
-  /* Design service type */
+  /* Design service type — default to Stitching Only */
   const DESIGN_OPTIONS = [
-    { value: "with-fabric", label: "Stitching with Fabric" },
-    { value: "stitching-only", label: "Stitching Only" }
+    { value: "stitching-only", label: "Stitching Only" },
+    { value: "with-fabric", label: "Stitching with Fabric" }
   ];
-  let designType = "with-fabric";
+  let designType = "stitching-only";
 
   $("#optDesign").innerHTML = DESIGN_OPTIONS.map(o =>
     `<button type="button" class="opt ${designType === o.value ? "selected" : ""}" data-design="${o.value}">${o.label}</button>`
@@ -298,34 +297,15 @@ function initProduct() {
     recalc();
   });
 
-  /* Material table */
-  $("#matTable").innerHTML = `
-    <tr><th>Material</th><th>Quantity</th><th>Price</th></tr>
-    <tr><td>Fabric</td><td>${p.materialCost.fabric.quantity}</td><td class="amt">${inr(p.materialCost.fabric.price)}</td></tr>
-    <tr><td>Lining</td><td>${p.materialCost.lining.quantity}</td><td class="amt">${inr(p.materialCost.lining.price)}</td></tr>
-    <tr><td>Lace</td><td>${p.materialCost.lace.quantity}</td><td class="amt">${inr(p.materialCost.lace.price)}</td></tr>
-    <tr><td>Accessories</td><td>—</td><td class="amt">${inr(p.materialCost.accessories.price)}</td></tr>
-  `;
-
-  /* Stitching tiers */
+  /* Stitching — single Designer Stitching tier, price is per-design */
   const tiersEl = $("#stitchingTiers");
-  let selectedTier = STITCHING_TIERS.findIndex(t => t.price === p.stitchingPrice);
-  if (selectedTier < 0) selectedTier = 1;
-  tiersEl.innerHTML = STITCHING_TIERS.map((t, i) => `
-    <button class="tier ${i === selectedTier ? "selected" : ""}" data-i="${i}">
-      ${t.popular ? '<span class="tier__tag">Popular</span>' : ""}
-      <h4>${t.name}</h4>
-      <div class="tier__price">${inr(t.price)}</div>
-      <p>${t.description}</p>
-      <ul>${t.features.map(f => `<li>${f}</li>`).join("")}</ul>
-    </button>`).join("");
-  tiersEl.addEventListener("click", (e) => {
-    const tier = e.target.closest(".tier");
-    if (!tier) return;
-    selectedTier = Number(tier.dataset.i);
-    $$(".tier", tiersEl).forEach((t, i) => t.classList.toggle("selected", i === selectedTier));
-    recalc();
-  });
+  tiersEl.innerHTML = `
+    <div>
+      <h4>Designer Stitching</h4>
+      <div class="tier__price">${inr(p.stitchingPrice)}</div>
+      <p>Tailored silhouette with designer detailing and premium lining.</p>
+      <ul><li>Custom body fit</li><li>Premium lining</li><li>Designer finishing</li><li>Hook &amp; zip</li><li>7–10 day delivery</li></ul>
+    </div>`;
 
   /* Customization */
   const opts = CUSTOMIZATION_OPTIONS;
@@ -335,8 +315,7 @@ function initProduct() {
     sleeve: opts.sleeveStyles[0],
     neck: opts.neckDesigns[0],
     size: p.availableSizes[0],
-    customSize: "",
-    embroidery: []
+    customSize: ""
   };
 
   const renderOptGroup = (key, values, getLabel = (v) => v) =>
@@ -354,21 +333,9 @@ function initProduct() {
     `<input class="select-field" id="customSizeInput" placeholder="Your measurements (optional)" style="margin-top:.6rem;${state.size === "Custom" ? "" : "display:none"}" />`);
   $("#customSizeInput").addEventListener("input", (e) => { state.customSize = e.target.value; });
 
-  $("#optEmbroidery").innerHTML = opts.embroidery.map(e =>
-    `<button class="opt" data-emb="${e.name}" data-price="${e.price}">${e.name}<span class="opt-price">+${inr(e.price)}</span></button>`).join("");
-
   const onOptClick = (e) => {
     const opt = e.target.closest(".opt");
     if (!opt) return;
-    if (opt.dataset.emb) {
-      const name = opt.dataset.emb;
-      const price = Number(opt.dataset.price);
-      const idx = state.embroidery.findIndex(x => x.name === name);
-      if (idx >= 0) { state.embroidery.splice(idx, 1); opt.classList.remove("selected"); }
-      else { state.embroidery.push({ name, price }); opt.classList.add("selected"); }
-      recalc();
-      return;
-    }
     const key = opt.dataset.key;
     const val = opt.dataset.val;
     state[key] = val;
@@ -379,23 +346,24 @@ function initProduct() {
     if (csi) csi.style.display = val === "Custom" && key === "size" ? "block" : "none";
     recalc();
   };
-  ["#optFabric", "#optColour", "#optSleeve", "#optNeck", "#optSize", "#optEmbroidery"].forEach(sel => $(sel)?.addEventListener("click", onOptClick));
+  ["#optFabric", "#optColour", "#optSleeve", "#optNeck", "#optSize"].forEach(sel => $(sel)?.addEventListener("click", onOptClick));
 
   /* Price calc */
   function recalc() {
-    const stitch = STITCHING_TIERS[selectedTier].price;
-    const emb = state.embroidery.reduce((s, e) => s + e.price, 0);
+    const stitch = p.stitchingPrice;
     const withFabric = designType === "with-fabric";
     const matCharge = withFabric ? mat : 0;
-    const total = matCharge + stitch + p.deliveryCharge + emb;
-    const materialSection = $("#materialSection");
-    const sumMaterialRow = $("#sumMaterialRow");
-    if (materialSection) materialSection.style.display = withFabric ? "" : "none";
-    if (sumMaterialRow) sumMaterialRow.style.display = withFabric ? "" : "none";
+    const total = matCharge + stitch + p.deliveryCharge;
+
+    const grpFabric = $("#grpFabric");
+    const grpColour = $("#grpColour");
+
+    if (grpFabric) grpFabric.style.display = withFabric ? "" : "none";
+    if (grpColour) grpColour.style.display = withFabric ? "" : "none";
+
     if (withFabric) $("#sumMaterial").textContent = inr(mat);
     $("#sumStitching").textContent = inr(stitch);
     $("#sumDelivery").textContent = inr(p.deliveryCharge);
-    $("#sumEmbroidery").textContent = emb ? inr(emb) : "—";
     $("#sumTotal").textContent = inr(total);
     $("#startingNote").textContent = withFabric
       ? `Starting from ${inr(base)}`
@@ -407,9 +375,10 @@ function initProduct() {
 
   /* WhatsApp order */
   $("#orderBtn").addEventListener("click", () => {
-    const tier = STITCHING_TIERS[selectedTier].name;
-    const emb = state.embroidery.map(e => e.name).join(", ") || "None";
     const sizeVal = state.size === "Custom" ? `Custom (${state.customSize || "to be measured"})` : state.size;
+    const fabricLines = state.designType === "with-fabric"
+      ? `• Fabric: ${state.fabric}\n• Colour: ${state.colour}\n`
+      : "";
     const msg =
 `Hello ${BRAND.shortName}! I'd like to order a design.
 
@@ -419,13 +388,10 @@ Category: ${p.category}
 
 Selected Options:
 • Design: ${state.designType === "stitching-only" ? "Stitching Only" : "Stitching with Fabric"}
-• Fabric: ${state.fabric}
-• Colour: ${state.colour}
-• Sleeve: ${state.sleeve}
+${fabricLines}• Sleeve: ${state.sleeve}
 • Neck: ${state.neck}
 • Size: ${sizeVal}
-• Stitching: ${tier}
-• Embroidery: ${emb}
+• Stitching: Designer Stitching
 
 Price: ${inr(state.total)}
 (${state.designType === "stitching-only" ? "Includes stitching + pan-India delivery" : "Includes material + stitching + pan-India delivery"})
