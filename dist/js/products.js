@@ -32,15 +32,13 @@
                           [0] main image   [1] front view
                           [2] back view    [3] side view   [4] close-up detail
                         Replace the URL with your own photo link if you have one.
-   materialCost       → an object with the four material lines shown in the
-                        price table on the detail page:
-                          fabric      → { quantity, price }
-                          lining      → { quantity, price }
-                          lace        → { quantity, price }
-                          accessories → { price }            (no quantity needed)
+   materialCost       → a single number: the total material cost for this
+                        design in rupees (fabric + lining + lace + accessories
+                        rolled into one figure). Each design can have a
+                        different material cost.
    stitchingPrice     → the default stitching cost (number, in rupees)
    deliveryCharge     → almost always 150 (flat pan-India delivery)
-   totalPrice         → materialCost total + stitchingPrice + deliveryCharge
+   totalPrice         → materialCost + stitchingPrice + deliveryCharge
                         (the site also re-calculates this live, but keep it
                          correct here so the cards show the right starting price)
    ============================================================================ */
@@ -87,12 +85,7 @@ const _HARDCODED_PRODUCTS = [
       "https://images.pexels.com/photos/19115384/pexels-photo-19115384.jpeg?auto=compress&cs=tinysrgb&h=900&w=600",
       "https://images.pexels.com/photos/8711176/pexels-photo-8711176.jpeg?auto=compress&cs=tinysrgb&h=600&w=900"
     ],
-    materialCost: {
-      fabric:      { quantity: "3.5 m", price: 4200 },
-      lining:      { quantity: "2.5 m", price: 900 },
-      lace:        { quantity: "4 m",   price: 1200 },
-      accessories: { price: 600 }
-    },
+    materialCost: 6900,
     stitchingPrice: 1500,
     deliveryCharge: DELIVERY_CHARGE
   },
@@ -114,12 +107,7 @@ const _HARDCODED_PRODUCTS = [
       "https://images.pexels.com/photos/38391089/pexels-photo-38391089.jpeg?auto=compress&cs=tinysrgb&h=900&w=600",
       "https://images.pexels.com/photos/20883949/pexels-photo-20883949.jpeg?auto=compress&cs=tinysrgb&h=600&w=900"
     ],
-    materialCost: {
-      fabric:      { quantity: "6 m",   price: 9500 },
-      lining:      { quantity: "4 m",   price: 1600 },
-      lace:        { quantity: "8 m",   price: 2800 },
-      accessories: { price: 2200 }
-    },
+    materialCost: 16100,
     stitchingPrice: 3500,
     deliveryCharge: DELIVERY_CHARGE
   },
@@ -141,12 +129,7 @@ const _HARDCODED_PRODUCTS = [
       "https://images.pexels.com/photos/20604437/pexels-photo-20604437.jpeg?auto=compress&cs=tinysrgb&h=900&w=600",
       "https://images.pexels.com/photos/12972006/pexels-photo-12972006.jpeg?auto=compress&cs=tinysrgb&h=600&w=900"
     ],
-    materialCost: {
-      fabric:      { quantity: "4 m",   price: 2400 },
-      lining:      { quantity: "2 m",   price: 600 },
-      lace:        { quantity: "3 m",   price: 700 },
-      accessories: { price: 400 }
-    },
+    materialCost: 4100,
     stitchingPrice: 800,
     deliveryCharge: DELIVERY_CHARGE
   },
@@ -168,12 +151,7 @@ const _HARDCODED_PRODUCTS = [
       "https://images.pexels.com/photos/37523793/pexels-photo-37523793.jpeg?auto=compress&cs=tinysrgb&h=900&w=600",
       "https://images.pexels.com/photos/6276040/pexels-photo-6276040.jpeg?auto=compress&cs=tinysrgb&h=600&w=900"
     ],
-    materialCost: {
-      fabric:      { quantity: "2.5 m", price: 1400 },
-      lining:      { quantity: "1 m",   price: 300 },
-      lace:        { quantity: "1.5 m", price: 350 },
-      accessories: { price: 200 }
-    },
+    materialCost: 2250,
     stitchingPrice: 800,
     deliveryCharge: DELIVERY_CHARGE
   },
@@ -195,12 +173,7 @@ const _HARDCODED_PRODUCTS = [
       "https://images.pexels.com/photos/1149964/pexels-photo-1149964.jpeg?auto=compress&cs=tinysrgb&h=900&w=600",
       "https://images.pexels.com/photos/6276032/pexels-photo-6276032.jpeg?auto=compress&cs=tinysrgb&h=600&w=900"
     ],
-    materialCost: {
-      fabric:      { quantity: "4 m",   price: 3200 },
-      lining:      { quantity: "2 m",   price: 700 },
-      lace:        { quantity: "2.5 m", price: 650 },
-      accessories: { price: 350 }
-    },
+    materialCost: 4900,
     stitchingPrice: 1500,
     deliveryCharge: DELIVERY_CHARGE
   },
@@ -222,12 +195,7 @@ const _HARDCODED_PRODUCTS = [
       "https://images.pexels.com/photos/1322993/pexels-photo-1322993.jpeg?auto=compress&cs=tinysrgb&h=900&w=600",
       "https://images.pexels.com/photos/17246956/pexels-photo-17246956.jpeg?auto=compress&cs=tinysrgb&h=600&w=900"
     ],
-    materialCost: {
-      fabric:      { quantity: "5 m",   price: 3600 },
-      lining:      { quantity: "3 m",   price: 800 },
-      lace:        { quantity: "6 m",   price: 1400 },
-      accessories: { price: 500 }
-    },
+    materialCost: 6300,
     stitchingPrice: 1500,
     deliveryCharge: DELIVERY_CHARGE
   },
@@ -249,12 +217,7 @@ const _HARDCODED_PRODUCTS = [
       "https://images.pexels.com/photos/36489477/pexels-photo-36489477.jpeg?auto=compress&cs=tinysrgb&h=900&w=600",
       "https://images.pexels.com/photos/33101418/pexels-photo-33101418.jpeg?auto=compress&cs=tinysrgb&h=600&w=900"
     ],
-    materialCost: {
-      fabric:      { quantity: "5.5 m", price: 6800 },
-      lining:      { quantity: "3.5 m", price: 1200 },
-      lace:        { quantity: "7 m",   price: 2200 },
-      accessories: { price: 1500 }
-    },
+    materialCost: 11700,
     stitchingPrice: 3500,
     deliveryCharge: DELIVERY_CHARGE
   },
@@ -276,12 +239,7 @@ const _HARDCODED_PRODUCTS = [
       "https://images.pexels.com/photos/34351520/pexels-photo-34351520.jpeg?auto=compress&cs=tinysrgb&h=900&w=600",
       "https://images.pexels.com/photos/4935559/pexels-photo-4935559.jpeg?auto=compress&cs=tinysrgb&h=600&w=900"
     ],
-    materialCost: {
-      fabric:      { quantity: "1.2 m", price: 1800 },
-      lining:      { quantity: "1 m",   price: 400 },
-      lace:        { quantity: "1.5 m", price: 600 },
-      accessories: { price: 800 }
-    },
+    materialCost: 3600,
     stitchingPrice: 1500,
     deliveryCharge: DELIVERY_CHARGE
   },
@@ -303,12 +261,7 @@ const _HARDCODED_PRODUCTS = [
       "https://images.pexels.com/photos/18010396/pexels-photo-18010396.jpeg?auto=compress&cs=tinysrgb&h=900&w=600",
       "https://images.pexels.com/photos/8751904/pexels-photo-8751904.jpeg?auto=compress&cs=tinysrgb&h=600&w=900"
     ],
-    materialCost: {
-      fabric:      { quantity: "3.5 m", price: 4600 },
-      lining:      { quantity: "2.5 m", price: 900 },
-      lace:        { quantity: "2 m",   price: 500 },
-      accessories: { price: 700 }
-    },
+    materialCost: 6700,
     stitchingPrice: 1500,
     deliveryCharge: DELIVERY_CHARGE
   },
@@ -330,12 +283,7 @@ const _HARDCODED_PRODUCTS = [
       "https://images.pexels.com/photos/38279923/pexels-photo-38279923.jpeg?auto=compress&cs=tinysrgb&h=900&w=600",
       "https://images.pexels.com/photos/12972006/pexels-photo-12972006.jpeg?auto=compress&cs=tinysrgb&h=600&w=900"
     ],
-    materialCost: {
-      fabric:      { quantity: "4 m",   price: 5200 },
-      lining:      { quantity: "2.5 m", price: 800 },
-      lace:        { quantity: "1.5 m", price: 400 },
-      accessories: { price: 600 }
-    },
+    materialCost: 7000,
     stitchingPrice: 1500,
     deliveryCharge: DELIVERY_CHARGE
   },
@@ -357,12 +305,7 @@ const _HARDCODED_PRODUCTS = [
       "https://images.pexels.com/photos/1322993/pexels-photo-1322993.jpeg?auto=compress&cs=tinysrgb&h=900&w=600",
       "https://images.pexels.com/photos/8711176/pexels-photo-8711176.jpeg?auto=compress&cs=tinysrgb&h=600&w=900"
     ],
-    materialCost: {
-      fabric:      { quantity: "4.5 m", price: 3000 },
-      lining:      { quantity: "2.5 m", price: 700 },
-      lace:        { quantity: "3 m",   price: 800 },
-      accessories: { price: 400 }
-    },
+    materialCost: 4900,
     stitchingPrice: 800,
     deliveryCharge: DELIVERY_CHARGE
   },
@@ -384,12 +327,7 @@ const _HARDCODED_PRODUCTS = [
       "https://images.pexels.com/photos/8531460/pexels-photo-8531460.jpeg?auto=compress&cs=tinysrgb&h=900&w=600",
       "https://images.pexels.com/photos/4935559/pexels-photo-4935559.jpeg?auto=compress&cs=tinysrgb&h=600&w=900"
     ],
-    materialCost: {
-      fabric:      { quantity: "4 m",   price: 3800 },
-      lining:      { quantity: "3 m",   price: 900 },
-      lace:        { quantity: "5 m",   price: 1300 },
-      accessories: { price: 700 }
-    },
+    materialCost: 6700,
     stitchingPrice: 1500,
     deliveryCharge: DELIVERY_CHARGE
   }
@@ -412,10 +350,7 @@ try {
    (material total + default stitching + delivery)
    ---------------------------------------------------------------------------- */
 function materialTotal(p) {
-  return (p.materialCost?.fabric?.price || 0) +
-         (p.materialCost?.lining?.price || 0) +
-         (p.materialCost?.lace?.price || 0) +
-         (p.materialCost?.accessories?.price || 0);
+  return p.materialCost || 0;
 }
 function startingPrice(p) {
   return materialTotal(p) + (p.stitchingPrice || 0) + (p.deliveryCharge || DELIVERY_CHARGE);
