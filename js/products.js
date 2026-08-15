@@ -350,7 +350,13 @@ try {
    (material total + default stitching + delivery)
    ---------------------------------------------------------------------------- */
 function materialTotal(p) {
-  return p.materialCost || 0;
+  const m = p.materialCost;
+  if (typeof m === "number") return m;
+  if (m && typeof m === "object") {
+    return (m.fabric?.price || 0) + (m.lining?.price || 0) +
+           (m.lace?.price || 0) + (m.accessories?.price || 0);
+  }
+  return 0;
 }
 function startingPrice(p) {
   return materialTotal(p) + (p.stitchingPrice || 0) + (p.deliveryCharge || DELIVERY_CHARGE);
