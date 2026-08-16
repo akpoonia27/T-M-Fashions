@@ -233,10 +233,10 @@ const _HARDCODED_PRODUCTS = [
     description: "A champagne-gold lehenga in art silk with delicate sequin scatter and a scalloped hem. Light to wear, luminous to look at — built for reception nights and the sangeet floor.",
     images: [
       "/public/IMG_D1L1.png?auto=compress&cs=tinysrgb&h=900&w=600",
-      "/IMG_D1L1.png??auto=compress&cs=tinysrgb&h=900&w=600",
-      "/public/IMG_D1L1??auto=compress&cs=tinysrgb&h=900&w=600",
-      "/public/IMG_D1L1??auto=compress&cs=tinysrgb&h=900&w=600",
-      "/public/IMG_D1L1??auto=compress&cs=tinysrgb&h=600&w=900"
+      "/public/IMG_D1L2.png?auto=compress&cs=tinysrgb&h=900&w=600",
+      "/public/IMG_D1L3.png?auto=compress&cs=tinysrgb&h=900&w=600",
+      "/public/IMG_D1L4.png?auto=compress&cs=tinysrgb&h=900&w=600",
+      "/public/IMG_D1L5.png?auto=compress&cs=tinysrgb&h=600&w=900"
     ],
     materialCost: 3500,
     stitchingPrice: 1700,
