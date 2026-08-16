@@ -221,7 +221,27 @@ const _HARDCODED_PRODUCTS = [
     stitchingPrice: 3500,
     deliveryCharge: DELIVERY_CHARGE
   },
-
+ {
+    id: 13,
+    name: "Silk Lehenga",
+    designCode: "EA-022",
+    category: "Lehenga",
+    colour: "Champagne Gold",
+    occasion: "Reception · Sangeet",
+    fabric: "Art Silk",
+    availableSizes: ["XS", "S", "M", "L", "XL"],
+    description: "A champagne-gold lehenga in art silk with delicate sequin scatter and a scalloped hem. Light to wear, luminous to look at — built for reception nights and the sangeet floor.",
+    images: [
+      "/public/IMG_D1L1?auto=compress&cs=tinysrgb&h=900&w=600",
+      "/public/IMG_D1L1??auto=compress&cs=tinysrgb&h=900&w=600",
+      "/public/IMG_D1L1??auto=compress&cs=tinysrgb&h=900&w=600",
+      "/public/IMG_D1L1??auto=compress&cs=tinysrgb&h=900&w=600",
+      "/public/IMG_D1L1??auto=compress&cs=tinysrgb&h=600&w=900"
+    ],
+    materialCost: 3500,
+    stitchingPrice: 1700,
+    deliveryCharge: DELIVERY_CHARGE
+  },
   {
     id: 8,
     name: "Ila Designer Blouse",
